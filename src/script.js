@@ -4,8 +4,6 @@ import * as dat from 'lil-gui'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DirectionalLight } from 'three'
 
-//raycaster will be important for our controlers, what they are pointing towards
-
 /**
  * Base
  */
@@ -21,40 +19,15 @@ const scene = new THREE.Scene()
 /**
  * Objects
  */
- const curve = new THREE.EllipseCurve(
-	0,  0,            // ax, aY
-	10, 10,           // xRadius, yRadius
-	0,  2 * Math.PI,  // aStartAngle, aEndAngle
-	false,            // aClockwise
-	0                 // aRotation
-);
-
-const points = curve.getPoints( 50 );
-const geometry = new THREE.BufferGeometry().setFromPoints( points );
-
-const material = new THREE.LineBasicMaterial( { color: '#ff0000' } );
-
-// Create the final object to add to the scene
-const ellipse = new THREE.Line( geometry, material );
-
-scene.add(ellipse)
+const geometry = new THREE.CircleGeometry(5, 32)
+const material = new THREE.MeshBasicMaterial({color: 'skyblue'})
+const pond = new THREE.Mesh(geometry, material)
+scene.add(pond)
 // const object1 = new THREE.Mesh(
 //     new THREE.SphereGeometry(0.5, 16, 16),
 //     new THREE.MeshBasicMaterial({ color: '#ff0000' })
 // )
 // object1.position.x = - 2
-
-// const object2 = new THREE.Mesh(
-//     new THREE.SphereGeometry(0.5, 16, 16),
-//     new THREE.MeshBasicMaterial({ color: '#ff0000' })
-// )
-
-// const object3 = new THREE.Mesh(
-//     new THREE.SphereGeometry(0.5, 16, 16),
-//     new THREE.MeshBasicMaterial({ color: '#ff0000' })
-// )
-// object3.position.x = 2
-
 // scene.add(object1, object2, object3)
 
 /**
