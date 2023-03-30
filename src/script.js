@@ -19,16 +19,23 @@ const scene = new THREE.Scene()
 /**
  * Objects
  */
-const geometry = new THREE.CircleGeometry(5, 32)
-const material = new THREE.MeshBasicMaterial({color: 'skyblue'})
-const pond = new THREE.Mesh(geometry, material)
-scene.add(pond)
-// const object1 = new THREE.Mesh(
-//     new THREE.SphereGeometry(0.5, 16, 16),
-//     new THREE.MeshBasicMaterial({ color: '#ff0000' })
-// )
-// object1.position.x = - 2
-// scene.add(object1, object2, object3)
+// const geometry = new THREE.CircleGeometry(5, 32)
+// const material = new THREE.MeshBasicMaterial({color: 'skyblue'})
+// const pond = new THREE.Mesh(geometry, material)
+// scene.add(pond)
+
+const curve = new THREE.Shape() //code borrowed from threejs.org along with github
+curve.absellipse(
+    0, 0,
+    4, 2,
+    0, Math.PI*2, 
+    false,
+    0
+)
+const geometry = new THREE.ShapeBufferGeometry( curve )
+const material = new THREE.MeshBasicMaterial( { color: 'skyblue'} )
+const ellipse = new THREE.Mesh( geometry, material )
+scene.add(ellipse)
 
 /**
  * Raycaster
@@ -106,8 +113,9 @@ window.addEventListener('click', () =>
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.z = 3
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 5, 100)
+camera.position.z = 7 //this pans out to the entire pond
+
 scene.add(camera)
 
 // Controls
@@ -133,8 +141,8 @@ gltfLoader.load(
     (gltf) =>
     {
         model = gltf.scene
-        model.position.y = -1.2
-        scene.add(model)
+        model.position.y = -0.8
+        //scene.add(model)
     }
 )
 
