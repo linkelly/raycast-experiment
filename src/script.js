@@ -113,9 +113,11 @@ window.addEventListener('click', () =>
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 5, 100)
-camera.position.z = 7 //this pans out to the entire pond
-
+// const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 5, 100)
+// camera.position.set(0,0,7)
+// scene.add(camera)
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+camera.position.z = 3
 scene.add(camera)
 
 // Controls
